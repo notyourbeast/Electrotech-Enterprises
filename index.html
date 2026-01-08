@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Electrotech Enterprises: One Stop Solution for Automation in sugar, distillery, and allied industries. Providing DCS/PLC systems, field instruments, and online monitoring since 1994.">
+    <title>Electrotech Enterprises - Automation Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#001F3F',
+                        green: '#28A745',
+                        orange: '#FD7E14',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles for subtle effects */
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .slide-in-left { opacity: 0; transform: translateX(-50px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .slide-in-left.visible { opacity: 1; transform: translateX(0); }
+        .slide-in-right { opacity: 0; transform: translateX(50px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .slide-in-right.visible { opacity: 1; transform: translateX(0); }
+        .gear-icon { background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTBjMC4wMyAwIC4wNi0wLjAwMSAwLjA5LTAuMDAxVjE1aC0yLjA5YzAuMDMtMC4wMDUtMC4wNi0wLjAwOS0wLjA5LTAuMDA5QzguMTUgMTUuMDAxIDUuMDAxIDEyLjg2IDUuMDAxIDExczMuMTQ5LTQuMDAxIDcuMDAxLTQuMDAxYzAuMDMgMCAwLjA2LTAuMDA0IDAuMDktMC4wMDlWNGgyLjA5YzAuMDMtMC4wMDAxIDAuMDYtMC4wMDEgMC4wOS0wLjAwMVYyem0wIDE2YzMuODYxIDAgNy0zLjE0IDctN2gtMXYtMmgxYy0wLjAwMS0zLjg2MS0zLjE0LTctNy03VjZoLTIuMDljLTAuMDMtMC4wMDAxLTAuMDYtMC4wMDEtLTAuMDktMC4wMDFWN2MtMy44NjEgMC03IDMuMTQtNyA3aDF2MmgxYy0wLjAwMSAzLjg2IDMuMTQtNyA3LTd6IiBmaWxsPSIjMjhBNzQ1Ii8+PC9zdmc+'); background-size: contain; }
+        
+        /* Slider styles */
+        .slider-container { 
+            overflow: hidden; 
+            position: relative; 
+            padding: 2rem 0;
+        }
+        
+        .slider-container::before,
+        .slider-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 150px;
+            z-index: 10;
+            pointer-events: none;
+        }
+        
+        .slider-container::before {
+            left: 0;
+            background: linear-gradient(to right, rgba(249, 250, 251, 1), rgba(249, 250, 251, 0));
+        }
+        
+        .slider-container::after {
+            right: 0;
+            background: linear-gradient(to left, rgba(249, 250, 251, 1), rgba(249, 250, 251, 0));
+        }
+        
+        /* Consistent container max-width */
+        .container { max-width: 1280px; }
+        
+        /* Smooth transitions for all interactive elements */
+        a, button, input, textarea, select {
+            transition: all 0.3s ease;
+        }
+        
+        /* Consistent card styles */
+        .card-base {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-base:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+        }
+        
+        .slider-track { 
+            display: flex; 
+            transition: transform 0.5s ease; 
+            will-change: transform; 
+        }
+        
+        .slider-item { 
+            flex: 0 0 33.333%; 
+            padding: 1rem; 
+        }
+        
+        @media (max-width: 768px) { 
+            .slider-item { flex: 0 0 50%; } 
+            .slider-container::before,
+            .slider-container::after { width: 80px; }
+        }
+        
+        @media (max-width: 480px) { 
+            .slider-item { flex: 0 0 100%; } 
+            .slider-container::before,
+            .slider-container::after { width: 50px; }
+        }
+        
+        .client-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .client-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(40, 167, 69, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .client-card:hover::before {
+            left: 100%;
+        }
+        
+        .client-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(40, 167, 69, 0.2);
+            border-color: rgba(40, 167, 69, 0.3);
+        }
+        
+        .client-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1F3F5F;
+            line-height: 1.5;
+            margin: 0;
+        }
+        
+        @keyframes slide {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        
+        /* Smooth scroll offset for fixed navbar */
+        html { scroll-padding-top: 80px; scroll-behavior: smooth; }
+        
+        /* Consistent section spacing */
+        section { scroll-margin-top: 80px; }
+        
+        /* Loading animation */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+        
+        .loading-shimmer {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+        
+        /* Consistent card hover effects */
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Consistent button styles */
+        .btn-primary {
+            background: linear-gradient(135deg, #28A745 0%, #20c997 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #218838 0%, #1aa179 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(40, 167, 69, 0.3);
+        }
+        
+        /* Consistent heading styles */
+        .section-heading {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+        
+        /* Consistent text colors */
+        .text-primary { color: #001F3F; }
+        .text-secondary { color: #6B7280; }
+        
+        /* Smooth page transitions */
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Consistent focus states */
+        *:focus-visible {
+            outline: 2px solid #28A745;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+        
+        /* Product accordion animation */
+        .product-details { 
+            max-height: 0; 
+            overflow: hidden; 
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-out, padding 0.3s ease-out; 
+            opacity: 0; 
+            padding-top: 0; 
+        }
+        .product-details.open { 
+            max-height: 800px; 
+            opacity: 1; 
+            padding-top: 0.5rem; 
+        }
+        
+        .product-accordion {
+            transition: all 0.3s ease;
+        }
+        
+        .product-accordion:hover {
+            transform: translateY(-2px);
+        }
+        
+        .product-header:hover .product-icon {
+            color: #28A745;
+            transform: scale(1.1);
+        }
+        
+        .product-details.open ~ .product-header .product-icon,
+        .product-header:has(+ .product-details.open) .product-icon {
+            transform: rotate(45deg);
+            color: #28A745;
+        }
+        
+        /* Focus states for accessibility */
+        a:focus, button:focus, input:focus, textarea:focus { outline: 2px solid #28A745; outline-offset: 2px; }
+        
+        /* Mobile menu animation */
+        #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        #mobile-menu.open { max-height: 500px; }
+        
+        /* Menu icon transition */
+        .menu-icon svg path { transition: all 0.3s ease; }
+        .menu-icon.open svg path:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .menu-icon.open svg path:nth-child(2) { opacity: 0; }
+        .menu-icon.open svg path:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+        
+        /* Form improvements */
+        input:invalid, textarea:invalid { border-color: #dc2626; }
+        input:valid, textarea:valid { border-color: #28A745; }
+        
+        /* Better button hover states */
+        button:hover, .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        button:active, .btn:active { transform: translateY(0); }
+        
+        /* Floating cards animations */
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px) rotate(var(--rotation, 0deg)); 
+            }
+            25% { 
+                transform: translateY(-15px) translateX(5px) rotate(calc(var(--rotation, 0deg) + 1deg)); 
+            }
+            50% { 
+                transform: translateY(-25px) translateX(-5px) rotate(calc(var(--rotation, 0deg) - 1deg)); 
+            }
+            75% { 
+                transform: translateY(-10px) translateX(3px) rotate(calc(var(--rotation, 0deg) + 0.5deg)); 
+            }
+        }
+        
+        @keyframes glow {
+            0%, 100% { 
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2), 0 0 0 rgba(40, 167, 69, 0);
+            }
+            50% { 
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2), 0 0 20px rgba(40, 167, 69, 0.3);
+            }
+        }
+        
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .floating-card {
+            animation: float 8s ease-in-out infinite, glow 4s ease-in-out infinite;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            will-change: transform;
+            backdrop-filter: blur(12px);
+        }
+        
+        .floating-card:nth-child(1) { --rotation: 3deg; animation-delay: 0s, 0s; }
+        .floating-card:nth-child(2) { --rotation: -3deg; animation-delay: 1.2s, 0.5s; }
+        .floating-card:nth-child(3) { --rotation: 2deg; animation-delay: 2.4s, 1s; }
+        .floating-card:nth-child(4) { --rotation: -2deg; animation-delay: 0.6s, 1.5s; }
+        .floating-card:nth-child(5) { --rotation: 1.5deg; animation-delay: 1.8s, 2s; }
+        .floating-card:nth-child(6) { --rotation: -1.5deg; animation-delay: 3s, 2.5s; }
+        .floating-card:nth-child(7) { --rotation: 2.5deg; animation-delay: 0.9s, 3s; }
+        .floating-card:nth-child(8) { --rotation: -2.5deg; animation-delay: 2.1s, 3.5s; }
+        
+        .floating-card:hover {
+            transform: translateY(-15px) scale(1.08) rotate(0deg) !important;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4), 
+                        0 0 30px rgba(40, 167, 69, 0.4),
+                        0 0 60px rgba(40, 167, 69, 0.2) !important;
+            background: rgba(255,255,255,0.2) !important;
+            border-color: rgba(40, 167, 69, 0.6) !important;
+            z-index: 10;
+            animation-play-state: paused;
+        }
+        
+        .floating-card:hover .card-icon {
+            animation: iconPulse 1s ease-in-out infinite;
+            transform: scale(1.15);
+        }
+        
+        .floating-card:hover .card-icon svg {
+            filter: drop-shadow(0 0 8px rgba(255,255,255,0.8));
+        }
+        
+        .floating-card:active {
+            transform: translateY(-8px) scale(1.05) rotate(0deg) !important;
+        }
+        
+        .card-icon {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .floating-card:hover .card-title {
+            color: #4ade80;
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+        }
+        
+        /* Solution cards */
+        .solution-card {
+            position: relative;
+            transform: translateY(0);
+        }
+        
+        .solution-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .solution-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(to right, #28A745, #FD7E14);
+            transition: width 0.5s ease;
+        }
+        
+        .solution-card:hover::after {
+            width: 100%;
+        }
+        
+        /* Monitoring cards */
+        .monitoring-card {
+            position: relative;
+            transform: translateY(0);
+        }
+        
+        .monitoring-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .monitoring-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: linear-gradient(to right, #3b82f6, #ef4444, #a855f7, #14b8a6);
+            transition: width 0.5s ease;
+        }
+        
+        .monitoring-card:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-white font-sans text-navy antialiased">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-md transition-all duration-300 border-b border-gray-100">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center max-w-7xl">
+            <a href="#hero" class="text-xl md:text-2xl font-bold text-navy flex items-center hover:text-green transition-colors duration-300 group">
+                <span class="gear-icon w-6 h-6 mr-2 group-hover:rotate-180 transition-transform duration-500"></span> 
+                <span class="hidden sm:inline">Electrotech Enterprises</span> 
+                <span class="sm:hidden">ET</span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#hero" class="text-sm font-medium hover:text-green transition-colors duration-300 relative group">
+                    Home
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#about" class="text-sm font-medium hover:text-green transition-colors duration-300 relative group">
+                    About
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#solutions" class="text-sm font-medium hover:text-green transition-colors duration-300 relative group">
+                    Solutions
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#products" class="text-sm font-medium hover:text-green transition-colors duration-300 relative group">
+                    Products
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#monitoring" class="text-sm font-medium hover:text-green transition-colors duration-300 relative group">
+                    Monitoring
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#clients" class="text-sm font-medium hover:text-green transition-colors duration-300 relative group">
+                    Clients
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#contact" class="text-sm font-medium hover:text-green transition-colors duration-300 relative group">
+                    Contact
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </div>
+            <button id="menu-toggle" class="md:hidden text-navy focus:outline-none menu-icon" aria-label="Toggle menu" aria-expanded="false">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12h16" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 18h16" />
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="md:hidden bg-white px-4 py-2 space-y-2 border-t">
+                <a href="#hero" class="block py-2 hover:text-green transition-colors duration-300" onclick="closeMobileMenu()">Home</a>
+                <a href="#about" class="block py-2 hover:text-green transition-colors duration-300" onclick="closeMobileMenu()">About</a>
+                <a href="#solutions" class="block py-2 hover:text-green transition-colors duration-300" onclick="closeMobileMenu()">Solutions</a>
+                <a href="#products" class="block py-2 hover:text-green transition-colors duration-300" onclick="closeMobileMenu()">Products</a>
+                <a href="#monitoring" class="block py-2 hover:text-green transition-colors duration-300" onclick="closeMobileMenu()">Monitoring</a>
+                <a href="#clients" class="block py-2 hover:text-green transition-colors duration-300" onclick="closeMobileMenu()">Clients</a>
+                <a href="#contact" class="block py-2 hover:text-green transition-colors duration-300" onclick="closeMobileMenu()">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative h-screen flex items-center bg-gradient-to-br from-navy via-navy to-navy/95 text-white overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-20 right-20 w-96 h-96 bg-green/10 rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-20 left-20 w-96 h-96 bg-orange/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-green/5 rounded-full blur-3xl"></div>
+            </div>
+        
+        <!-- Grid Pattern Overlay -->
+        <div class="absolute inset-0 opacity-5" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
+        
+        <div class="container mx-auto px-4 z-10 relative">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="slide-in-left">
+                    <div class="inline-block mb-4 px-4 py-2 bg-green/20 backdrop-blur-sm rounded-full border border-green/30">
+                        <span class="text-white text-sm font-semibold">Since 1994 • Trusted by 500+ Clients</span>
+                    </div>
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-white">
+                        <span class="block">One Stop Solution</span>
+                        <span class="block">for Industrial Automation</span>
+                    </h1>
+                    <p class="text-lg md:text-xl mb-8 text-gray-200 leading-relaxed max-w-xl">
+                        Transforming sugar and allied industries with innovative DCS/PLC systems, field instruments, and compliance monitoring solutions.
+                    </p>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                        <a href="#solutions" class="inline-flex items-center justify-center bg-green text-white px-8 py-4 rounded-lg hover:bg-green/90 transition-all duration-300 font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-105 group">
+                            <span>Explore Solutions</span>
+                            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </a>
+                        <a href="#contact" class="inline-flex items-center justify-center bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-300 font-semibold text-lg">
+                            <span>Get in Touch</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Key Highlights -->
+                    <div class="grid grid-cols-3 gap-4 mt-8">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-white mb-1">30+</div>
+                            <div class="text-xs text-gray-300">Years Experience</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-white mb-1">500+</div>
+                            <div class="text-xs text-gray-300">Happy Clients</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-white mb-1">100+</div>
+                            <div class="text-xs text-gray-300">Projects Done</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Visual Element -->
+                <div class="hidden md:block slide-in-right relative">
+                    <div class="relative w-full h-[550px]">
+                        <!-- Floating Cards -->
+                        <div class="floating-card absolute top-5 right-5 bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20 shadow-2xl min-w-[180px]" style="--rotation: 3deg;">
+                            <div class="flex items-center gap-4">
+                                <div class="card-icon w-14 h-14 bg-gradient-to-br from-green/30 to-green/10 rounded-xl flex items-center justify-center border border-green/30">
+                                    <svg class="w-7 h-7 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="card-title text-white font-bold text-base mb-1 transition-colors">DCS/PLC Systems</div>
+                                    <div class="text-gray-300 text-xs">Advanced Control</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="floating-card absolute bottom-24 left-5 bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20 shadow-2xl min-w-[180px]" style="--rotation: -3deg;">
+                            <div class="flex items-center gap-4">
+                                <div class="card-icon w-14 h-14 bg-gradient-to-br from-orange/30 to-orange/10 rounded-xl flex items-center justify-center border border-orange/30">
+                                    <svg class="w-7 h-7 text-orange-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="card-title text-white font-bold text-base mb-1 transition-colors">Online Monitoring</div>
+                                    <div class="text-gray-300 text-xs">Real-time Data</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="floating-card absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20 shadow-2xl min-w-[180px]" style="--rotation: 2deg;">
+                            <div class="flex items-center gap-4">
+                                <div class="card-icon w-14 h-14 bg-gradient-to-br from-green/30 to-green/10 rounded-xl flex items-center justify-center border border-green/30">
+                                    <svg class="w-7 h-7 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="card-title text-white font-bold text-base mb-1 transition-colors">Field Instruments</div>
+                                    <div class="text-gray-300 text-xs">Precision Tools</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="floating-card absolute top-16 left-16 bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20 shadow-2xl min-w-[180px]" style="--rotation: -2deg;">
+                            <div class="flex items-center gap-4">
+                                <div class="card-icon w-14 h-14 bg-gradient-to-br from-orange/30 to-orange/10 rounded-xl flex items-center justify-center border border-orange/30">
+                                    <svg class="w-7 h-7 text-orange-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="card-title text-white font-bold text-base mb-1 transition-colors">Mill Automation</div>
+                                    <div class="text-gray-300 text-xs">Processing</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="floating-card absolute top-40 right-24 bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20 shadow-2xl min-w-[180px]" style="--rotation: 1.5deg;">
+                            <div class="flex items-center gap-4">
+                                <div class="card-icon w-14 h-14 bg-gradient-to-br from-green/30 to-green/10 rounded-xl flex items-center justify-center border border-green/30">
+                                    <svg class="w-7 h-7 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="card-title text-white font-bold text-base mb-1 transition-colors">Boiler Automation</div>
+                                    <div class="text-gray-300 text-xs">Control Systems</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="floating-card absolute bottom-40 right-12 bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20 shadow-2xl min-w-[180px]" style="--rotation: -1.5deg;">
+                            <div class="flex items-center gap-4">
+                                <div class="card-icon w-14 h-14 bg-gradient-to-br from-orange/30 to-orange/10 rounded-xl flex items-center justify-center border border-orange/30">
+                                    <svg class="w-7 h-7 text-orange-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="card-title text-white font-bold text-base mb-1 transition-colors">Flow Meters</div>
+                                    <div class="text-gray-300 text-xs">Measurement</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="floating-card absolute bottom-12 left-24 bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20 shadow-2xl min-w-[180px]" style="--rotation: 2.5deg;">
+                            <div class="flex items-center gap-4">
+                                <div class="card-icon w-14 h-14 bg-gradient-to-br from-green/30 to-green/10 rounded-xl flex items-center justify-center border border-green/30">
+                                    <svg class="w-7 h-7 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="card-title text-white font-bold text-base mb-1 transition-colors">24/7 Support</div>
+                                    <div class="text-gray-300 text-xs">Always Available</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="floating-card absolute top-1/3 right-1/3 bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20 shadow-2xl min-w-[180px]" style="--rotation: -2.5deg;">
+                            <div class="flex items-center gap-4">
+                                <div class="card-icon w-14 h-14 bg-gradient-to-br from-orange/30 to-orange/10 rounded-xl flex items-center justify-center border border-orange/30">
+                                    <svg class="w-7 h-7 text-orange-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="card-title text-white font-bold text-base mb-1 transition-colors">Compliance</div>
+                                    <div class="text-gray-300 text-xs">CPCB/SPCB</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#about" class="flex flex-col items-center text-white/60 hover:text-white transition-colors">
+                <span class="text-sm mb-2">Scroll</span>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
+        <!-- Background decorative elements -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-green/5 rounded-full blur-3xl -mr-48 -mt-48"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-orange/5 rounded-full blur-3xl -ml-48 -mb-48"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16 fade-in">
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-green/10 rounded-full mb-4">
+                    <svg class="w-5 h-5 text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="text-green font-semibold text-sm">Since 1994</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-navy section-heading">Our Story</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Three decades of excellence in industrial automation and instrumentation, transforming industries with innovation and dedication
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+                <!-- Journey Card -->
+                <div class="fade-in">
+                    <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-green/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-3 mb-6">
+                                <div class="w-12 h-12 bg-gradient-to-br from-green to-green/70 rounded-xl flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg>
+                </div>
+                                <h3 class="text-2xl font-bold text-navy">Journey of Excellence</h3>
+                </div>
+                            <div class="space-y-5 text-gray-700 leading-relaxed">
+                                <p class="text-lg">Established in <span class="font-bold text-green text-xl">1994</span>, Electrotech Enterprises has been at the forefront of instrumentation and automation for <span class="font-bold text-green text-xl">30 years</span>. Starting with maintenance of variable speed drives, we've grown into a trusted integrator serving over <span class="font-bold text-green text-xl">500+ clients</span> across Western Maharashtra, Northern Karnataka, and overseas.</p>
+                                <p>We specialize in sugar and allied industries, offering complete solutions from DCS/PLC systems to online monitoring compliant with CPCB and SPCB norms.</p>
+                            </div>
+                            
+                            <!-- Key Highlights -->
+                            <div class="mt-6 pt-6 border-t border-gray-200 grid grid-cols-2 gap-4">
+                                <div class="flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-sm text-gray-600">Industry Leaders</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-sm text-gray-600">Global Reach</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-sm text-gray-600">Compliance Certified</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-sm text-gray-600">Innovation Driven</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Founder Card -->
+                <div class="slide-in-right">
+                    <div class="bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl border border-gray-100 p-8 hover:shadow-2xl transition-all duration-300 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-orange/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+                        <div class="relative z-10 text-center">
+                            <div class="w-32 h-32 bg-gradient-to-br from-green/20 to-orange/20 rounded-full mx-auto mb-6 flex items-center justify-center text-4xl font-bold text-navy border-4 border-green/30 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                SC
+                            </div>
+                            <h3 class="text-2xl font-bold text-navy mb-2">Mr. Sunil Chougule</h3>
+                            <p class="text-gray-600 mb-6 font-medium">Founder & Visionary</p>
+                            <div class="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-200 shadow-md">
+                                <svg class="w-8 h-8 text-green mx-auto mb-3" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.996 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.432.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                                </svg>
+                                <p class="italic text-gray-700 leading-relaxed text-base">"There are no goodbyes for us. Wherever you are, you will be in our hearts."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Section -->
+            <div class="mb-16 fade-in">
+                <h3 class="text-3xl font-bold text-center text-navy mb-12">Our Milestones</h3>
+                <div class="relative">
+                    <!-- Timeline line -->
+                    <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-green to-orange top-0"></div>
+                    
+                    <div class="space-y-12">
+                        <!-- Milestone 1 -->
+                        <div class="relative flex flex-col md:flex-row items-center gap-6">
+                            <div class="w-full md:w-1/2 md:text-right md:pr-12">
+                                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-green hover:shadow-xl transition-all duration-300">
+                                    <div class="text-green font-bold text-lg mb-2">1994</div>
+                                    <h4 class="text-xl font-bold text-navy mb-2">The Beginning</h4>
+                                    <p class="text-gray-600">Started with maintenance of variable speed drives, laying the foundation for excellence.</p>
+                                </div>
+                            </div>
+                            <div class="w-12 h-12 bg-green rounded-full flex items-center justify-center text-white font-bold shadow-lg z-10 flex-shrink-0">1</div>
+                            <div class="w-full md:w-1/2 md:pl-12"></div>
+                        </div>
+                        
+                        <!-- Milestone 2 -->
+                        <div class="relative flex flex-col md:flex-row items-center gap-6">
+                            <div class="w-full md:w-1/2 md:pr-12"></div>
+                            <div class="w-12 h-12 bg-orange rounded-full flex items-center justify-center text-white font-bold shadow-lg z-10 flex-shrink-0">2</div>
+                            <div class="w-full md:w-1/2 md:text-left md:pl-12">
+                                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-orange hover:shadow-xl transition-all duration-300">
+                                    <div class="text-orange font-bold text-lg mb-2">2000s</div>
+                                    <h4 class="text-xl font-bold text-navy mb-2">Expansion</h4>
+                                    <p class="text-gray-600">Expanded services to include DCS/PLC systems and comprehensive automation solutions.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Milestone 3 -->
+                        <div class="relative flex flex-col md:flex-row items-center gap-6">
+                            <div class="w-full md:w-1/2 md:text-right md:pr-12">
+                                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-green hover:shadow-xl transition-all duration-300">
+                                    <div class="text-green font-bold text-lg mb-2">2010s</div>
+                                    <h4 class="text-xl font-bold text-navy mb-2">Digital Transformation</h4>
+                                    <p class="text-gray-600">Introduced online monitoring systems and cloud-based solutions for regulatory compliance.</p>
+                                </div>
+                            </div>
+                            <div class="w-12 h-12 bg-green rounded-full flex items-center justify-center text-white font-bold shadow-lg z-10 flex-shrink-0">3</div>
+                            <div class="w-full md:w-1/2 md:pl-12"></div>
+                        </div>
+                        
+                        <!-- Milestone 4 -->
+                        <div class="relative flex flex-col md:flex-row items-center gap-6">
+                            <div class="w-full md:w-1/2 md:pr-12"></div>
+                            <div class="w-12 h-12 bg-orange rounded-full flex items-center justify-center text-white font-bold shadow-lg z-10 flex-shrink-0">4</div>
+                            <div class="w-full md:w-1/2 md:text-left md:pl-12">
+                                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-orange hover:shadow-xl transition-all duration-300">
+                                    <div class="text-orange font-bold text-lg mb-2">2024</div>
+                                    <h4 class="text-xl font-bold text-navy mb-2">30 Years Strong</h4>
+                                    <p class="text-gray-600">Celebrating 30 years of excellence, serving 500+ clients with unwavering commitment.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Statistics -->
+            <div class="grid md:grid-cols-4 gap-6 fade-in">
+                <div class="bg-white p-8 rounded-2xl shadow-lg text-center hover:shadow-2xl transition-all duration-300 hover:scale-105 border-t-4 border-green group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-green/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="text-5xl font-bold text-green mb-3">30+</div>
+                        <div class="text-gray-700 font-semibold text-lg">Years of Experience</div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg text-center hover:shadow-2xl transition-all duration-300 hover:scale-105 border-t-4 border-orange group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-orange/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="text-5xl font-bold text-orange mb-3">500+</div>
+                        <div class="text-gray-700 font-semibold text-lg">Happy Clients</div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg text-center hover:shadow-2xl transition-all duration-300 hover:scale-105 border-t-4 border-green group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-green/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="text-5xl font-bold text-green mb-3">100+</div>
+                        <div class="text-gray-700 font-semibold text-lg">Projects Completed</div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg text-center hover:shadow-2xl transition-all duration-300 hover:scale-105 border-t-4 border-orange group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-orange/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="text-5xl font-bold text-orange mb-3">24/7</div>
+                        <div class="text-gray-700 font-semibold text-lg">Support Available</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="py-24 bg-gradient-to-b from-white to-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-navy section-heading">Automation Solutions</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive automation solutions tailored for sugar and allied industries, delivering efficiency, precision, and reliability
+                </p>
+                </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="solution-card bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group fade-in border border-gray-100 overflow-hidden relative" style="transition-delay: 0.1s;">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-green/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-gradient-to-br from-green to-green/70 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                            </svg>
+                </div>
+                        <h3 class="text-xl font-bold mb-3 text-navy group-hover:text-green transition-colors">Mill Automation</h3>
+                        <p class="text-gray-600 leading-relaxed">Transforms sugarcane milling into a high-performance process with automated cane feeding and juice flow stabilization for maximum efficiency.</p>
+                </div>
+                </div>
+                
+                <div class="solution-card bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group fade-in border border-gray-100 overflow-hidden relative" style="transition-delay: 0.2s;">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-orange/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-gradient-to-br from-orange to-orange/70 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                            </svg>
+                </div>
+                        <h3 class="text-xl font-bold mb-3 text-navy group-hover:text-orange transition-colors">Boiler Automation</h3>
+                        <p class="text-gray-600 leading-relaxed">Advanced control and monitoring for boiler houses, ensuring stable operations with intelligent multi-element control.</p>
+                </div>
+                </div>
+                
+                <div class="solution-card bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group fade-in border border-gray-100 overflow-hidden relative" style="transition-delay: 0.3s;">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-green/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-gradient-to-br from-green to-green/70 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1V9a1 1 0 00-1-1h-3m-1-1h-3m-1-1H8m-5 5h13M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                </div>
+                        <h3 class="text-xl font-bold mb-3 text-navy group-hover:text-green transition-colors">Falling Film Evaporators</h3>
+                        <p class="text-gray-600 leading-relaxed">Optimizes evaporation by controlling levels, flows, and emergencies for consistent performance.</p>
+                </div>
+                </div>
+                
+                <div class="solution-card bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group fade-in border border-gray-100 overflow-hidden relative" style="transition-delay: 0.1s;">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-orange/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-gradient-to-br from-orange to-orange/70 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-navy group-hover:text-orange transition-colors">Pan Automation</h3>
+                        <p class="text-gray-600 leading-relaxed">Automates vacuum pans for consistent sugar quality and energy efficiency.</p>
+                    </div>
+                </div>
+                
+                <div class="solution-card bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group fade-in border border-gray-100 overflow-hidden relative" style="transition-delay: 0.2s;">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-green/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-gradient-to-br from-green to-green/70 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-navy group-hover:text-green transition-colors">PRDS Automation</h3>
+                        <p class="text-gray-600 leading-relaxed">Delivers precise steam at required pressure and temperature for plant-wide efficiency.</p>
+                    </div>
+                </div>
+                
+                <div class="solution-card bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group fade-in border border-gray-100 overflow-hidden relative" style="transition-delay: 0.3s;">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-orange/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-gradient-to-br from-orange to-orange/70 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-navy group-hover:text-orange transition-colors">Condenser Automation</h3>
+                        <p class="text-gray-600 leading-relaxed">Generates optimal vacuum with minimal water and power usage.</p>
+                    </div>
+                </div>
+                
+                <div class="solution-card bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group fade-in border border-gray-100 overflow-hidden relative" style="transition-delay: 0.1s;">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-green/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-gradient-to-br from-green to-green/70 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-navy group-hover:text-green transition-colors">Melter Automation</h3>
+                        <p class="text-gray-600 leading-relaxed">Precision control for raw sugar melting in refineries.</p>
+                    </div>
+                </div>
+                
+                <div class="solution-card bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group fade-in border border-gray-100 overflow-hidden relative" style="transition-delay: 0.2s;">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-orange/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-gradient-to-br from-orange to-orange/70 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-navy group-hover:text-orange transition-colors">pH Automation</h3>
+                        <p class="text-gray-600 leading-relaxed">Ensures precise pH control in juice clarification for crystal-white sugar.</p>
+                    </div>
+                </div>
+                
+                <div class="solution-card bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group fade-in border border-gray-100 overflow-hidden relative" style="transition-delay: 0.3s;">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-green/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-gradient-to-br from-green to-green/70 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-navy group-hover:text-green transition-colors">Centrifugal Feed Automation</h3>
+                        <p class="text-gray-600 leading-relaxed">Accurate feeding to centrifugal machines for optimal separation.</p>
+                    </div>
+                </div>
+                
+                <div class="solution-card bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group fade-in border border-gray-100 overflow-hidden relative" style="transition-delay: 0.1s;">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-orange/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-gradient-to-br from-orange to-orange/70 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-navy group-hover:text-orange transition-colors">Steam Head Sugar Silo Automation</h3>
+                        <p class="text-gray-600 leading-relaxed">Optimizes sugar handling from silos to prevent blockages and degradation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-24 bg-gradient-to-b from-gray-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-navy section-heading">Our Products</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Premium quality industrial products from leading manufacturers, ensuring reliability and performance for your automation needs
+                </p>
+                    </div>
+            
+            <div class="space-y-4 max-w-4xl mx-auto">
+                <div class="product-accordion bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 fade-in border border-gray-100 overflow-hidden group" style="transition-delay: 0.1s;">
+                    <div class="product-header cursor-pointer p-6 flex items-center justify-between group-hover:bg-gray-50 transition-colors" onclick="toggleDetails(this.nextElementSibling)" role="button" aria-expanded="false" tabindex="0">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-green to-green/70 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                </div>
+                            <h3 class="text-xl font-bold text-navy group-hover:text-green transition-colors">VFD (Variable Frequency Drive)</h3>
+                    </div>
+                        <span class="product-icon text-3xl font-light text-gray-400 transition-transform duration-300">+</span>
+                </div>
+                    <div class="product-details">
+                        <div class="px-6 pb-6 pt-2 border-t border-gray-100">
+                            <div class="grid md:grid-cols-2 gap-3 mt-4">
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>ABB</span>
+                    </div>
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Yaskawa</span>
+                </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+                
+                <div class="product-accordion bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 fade-in border border-gray-100 overflow-hidden group" style="transition-delay: 0.2s;">
+                    <div class="product-header cursor-pointer p-6 flex items-center justify-between group-hover:bg-gray-50 transition-colors" onclick="toggleDetails(this.nextElementSibling)" role="button" aria-expanded="false" tabindex="0">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-orange to-orange/70 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy group-hover:text-orange transition-colors">Weighing & Bagging Systems</h3>
+                        </div>
+                        <span class="product-icon text-3xl font-light text-gray-400 transition-transform duration-300">+</span>
+                    </div>
+                    <div class="product-details">
+                        <div class="px-6 pb-6 pt-2 border-t border-gray-100">
+                            <div class="grid md:grid-cols-2 gap-3 mt-4">
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Bagging/Stitching Machines</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Auto Weighing & Bagging Machine</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Bag Stitching/Closing Machine</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Stitching Conveyor</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Electronic Type Weight Bridge</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-accordion bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 fade-in border border-gray-100 overflow-hidden group" style="transition-delay: 0.3s;">
+                    <div class="product-header cursor-pointer p-6 flex items-center justify-between group-hover:bg-gray-50 transition-colors" onclick="toggleDetails(this.nextElementSibling)" role="button" aria-expanded="false" tabindex="0">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy group-hover:text-blue-600 transition-colors">Flow Meters</h3>
+                        </div>
+                        <span class="product-icon text-3xl font-light text-gray-400 transition-transform duration-300">+</span>
+                    </div>
+                    <div class="product-details">
+                        <div class="px-6 pb-6 pt-2 border-t border-gray-100">
+                            <div class="grid md:grid-cols-2 gap-3 mt-4">
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Mass Type</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Magnetic Type</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Orifice Type</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Venturi Type</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Vortex Type</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Mechanical Type</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Telemetry Type As Per CGWA Authority</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Non-Telemetry Type As Per CGWA Authority</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-accordion bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 fade-in border border-gray-100 overflow-hidden group" style="transition-delay: 0.1s;">
+                    <div class="product-header cursor-pointer p-6 flex items-center justify-between group-hover:bg-gray-50 transition-colors" onclick="toggleDetails(this.nextElementSibling)" role="button" aria-expanded="false" tabindex="0">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy group-hover:text-purple-600 transition-colors">Control Valves</h3>
+                        </div>
+                        <span class="product-icon text-3xl font-light text-gray-400 transition-transform duration-300">+</span>
+                    </div>
+                    <div class="product-details">
+                        <div class="px-6 pb-6 pt-2 border-t border-gray-100">
+                            <div class="grid md:grid-cols-2 gap-3 mt-4">
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Pneumatic Control Valve</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>On/off Valve</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Globe Valve</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Butterfly Valve</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>V Notch Valve</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Iris Valve</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Ball Valve</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-accordion bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 fade-in border border-gray-100 overflow-hidden group" style="transition-delay: 0.2s;">
+                    <div class="product-header cursor-pointer p-6 flex items-center justify-between group-hover:bg-gray-50 transition-colors" onclick="toggleDetails(this.nextElementSibling)" role="button" aria-expanded="false" tabindex="0">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy group-hover:text-teal-600 transition-colors">Sensors & Transmitters</h3>
+                        </div>
+                        <span class="product-icon text-3xl font-light text-gray-400 transition-transform duration-300">+</span>
+                    </div>
+                    <div class="product-details">
+                        <div class="px-6 pb-6 pt-2 border-t border-gray-100">
+                            <div class="grid md:grid-cols-2 gap-3 mt-4">
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Temperature & Humidity</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-700">
+                                    <svg class="w-5 h-5 text-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Level-Speed-Flow</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Online Monitoring Section -->
+    <section id="monitoring" class="py-24 bg-gradient-to-b from-white via-gray-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-green/10 rounded-full mb-4">
+                    <svg class="w-5 h-5 text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                    <span class="text-green font-semibold text-sm">CPCB & SPCB Compliant</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-navy section-heading">Online Monitoring Systems</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Ensure compliance with CPCB and SPCB norms through integrated real-time monitoring for waste water, emissions, air quality, flow meters, and piezometers. Real-time data collection and automated reporting for regulatory compliance.
+                </p>
+                </div>
+            
+            <div class="grid md:grid-cols-2 gap-6 mb-12">
+                <div class="monitoring-card bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group fade-in border border-gray-100 overflow-hidden relative" style="transition-delay: 0.1s;">
+                    <div class="absolute top-0 right-0 w-40 h-40 bg-blue/5 rounded-full -mr-20 -mt-20 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                            </svg>
+                </div>
+                        <h3 class="text-2xl font-bold mb-3 text-navy group-hover:text-blue-600 transition-colors">Effluent & Sewage Monitoring</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">Continuous water quality tracking at treatment plant outlets with automated data sharing.</p>
+                        <ul class="space-y-2 text-sm text-gray-500">
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                Real-time parameter tracking
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                Automated compliance reporting
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                Cloud-based data storage
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="monitoring-card bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group fade-in border border-gray-100 overflow-hidden relative" style="transition-delay: 0.2s;">
+                    <div class="absolute top-0 right-0 w-40 h-40 bg-red/5 rounded-full -mr-20 -mt-20 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1V9a1 1 0 00-1-1h-3m-1-1h-3m-1-1H8m-5 5h13M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 text-navy group-hover:text-red-600 transition-colors">Emission Monitoring</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">Stack sensors for dust and gas emissions in mg/Nm³ or kg/hr.</p>
+                        <ul class="space-y-2 text-sm text-gray-500">
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                Continuous stack monitoring
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                Multi-parameter analysis
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                Regulatory compliance tracking
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="monitoring-card bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group fade-in border border-gray-100 overflow-hidden relative" style="transition-delay: 0.3s;">
+                    <div class="absolute top-0 right-0 w-40 h-40 bg-purple/5 rounded-full -mr-20 -mt-20 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1V9a1 1 0 00-1-1h-3m-1-1h-3m-1-1H8m-5 5h13M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 text-navy group-hover:text-purple-600 transition-colors">Ambient Air Monitoring</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">Tracks SO₂, NOx, CO, O₃, PM, and meteorological data.</p>
+                        <ul class="space-y-2 text-sm text-gray-500">
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                Multi-pollutant detection
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                Weather data integration
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                24/7 continuous monitoring
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="monitoring-card bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group fade-in border border-gray-100 overflow-hidden relative" style="transition-delay: 0.4s;">
+                    <div class="absolute top-0 right-0 w-40 h-40 bg-teal/5 rounded-full -mr-20 -mt-20 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 text-navy group-hover:text-teal-600 transition-colors">Telemetry Flow Meters & Piezometers</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">Cloud-based water usage and groundwater monitoring per CGWA norms.</p>
+                        <ul class="space-y-2 text-sm text-gray-500">
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                CGWA compliant monitoring
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                Remote data transmission
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                Groundwater level tracking
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Features Highlight -->
+            <div class="bg-gradient-to-r from-green/10 to-orange/10 rounded-2xl p-8 border border-green/20 fade-in">
+                <div class="grid md:grid-cols-3 gap-6 text-center">
+                    <div>
+                        <div class="w-12 h-12 bg-green rounded-full flex items-center justify-center mx-auto mb-3">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h4 class="font-bold text-navy mb-2">Real-Time Data</h4>
+                        <p class="text-sm text-gray-600">Instant access to monitoring data</p>
+                    </div>
+                    <div>
+                        <div class="w-12 h-12 bg-orange rounded-full flex items-center justify-center mx-auto mb-3">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                        </div>
+                        <h4 class="font-bold text-navy mb-2">Regulatory Compliance</h4>
+                        <p class="text-sm text-gray-600">CPCB & SPCB norm compliance</p>
+                    </div>
+                    <div>
+                        <div class="w-12 h-12 bg-green rounded-full flex items-center justify-center mx-auto mb-3">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1V9a1 1 0 00-1-1h-3m-1-1h-3m-1-1H8m-5 5h13M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <h4 class="font-bold text-navy mb-2">Cloud Integration</h4>
+                        <p class="text-sm text-gray-600">Secure cloud-based data storage</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section id="clients" class="py-24 bg-gradient-to-b from-gray-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-navy section-heading">Our Trusted Clients</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Serving over <span class="text-green font-bold">500+ clients</span> across Western Maharashtra, Northern Karnataka, and overseas
+                </p>
+            </div>
+            
+            <!-- Stats Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-4xl mx-auto fade-in">
+                <div class="bg-white rounded-xl p-4 text-center shadow-md hover:shadow-lg transition-shadow">
+                    <div class="text-3xl font-bold text-green mb-1">500+</div>
+                    <div class="text-sm text-gray-600">Happy Clients</div>
+                </div>
+                <div class="bg-white rounded-xl p-4 text-center shadow-md hover:shadow-lg transition-shadow">
+                    <div class="text-3xl font-bold text-orange mb-1">30+</div>
+                    <div class="text-sm text-gray-600">Years Experience</div>
+                </div>
+                <div class="bg-white rounded-xl p-4 text-center shadow-md hover:shadow-lg transition-shadow">
+                    <div class="text-3xl font-bold text-green mb-1">100+</div>
+                    <div class="text-sm text-gray-600">Projects Done</div>
+                </div>
+                <div class="bg-white rounded-xl p-4 text-center shadow-md hover:shadow-lg transition-shadow">
+                    <div class="text-3xl font-bold text-orange mb-1">24/7</div>
+                    <div class="text-sm text-gray-600">Support</div>
+                </div>
+            </div>
+            
+            <div class="slider-container fade-in">
+                <div id="slider-track" class="slider-track">
+                    <!-- Clients will be dynamically inserted and duplicated for infinite loop -->
+                </div>
+            </div>
+            
+            <!-- Trust Badge -->
+            <div class="mt-12 text-center fade-in">
+                <div class="inline-flex items-center gap-3 bg-white px-6 py-3 rounded-full shadow-md">
+                    <svg class="w-6 h-6 text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                    <span class="text-gray-700 font-semibold">Trusted by Industry Leaders Since 1994</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+        <!-- Background decorative elements -->
+        <div class="absolute top-0 left-0 w-96 h-96 bg-green/5 rounded-full blur-3xl -ml-48 -mt-48"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-orange/5 rounded-full blur-3xl -mr-48 -mb-48"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-navy section-heading">Get in Touch</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Have a question or need assistance? We're here to help. Reach out to us and let's discuss how we can support your automation needs.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <!-- Contact Form -->
+                <div class="fade-in">
+                    <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
+                        <h3 class="text-2xl font-bold mb-6 text-navy flex items-center gap-3">
+                            <div class="w-10 h-10 bg-gradient-to-br from-green to-green/70 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            Send us a Message
+                        </h3>
+                        <form class="space-y-5" id="contact-form" onsubmit="handleFormSubmit(event)">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name *</label>
+                                <input type="text" id="name" name="name" placeholder="Your full name" required 
+                                    class="w-full p-4 border-2 border-gray-300 rounded-xl transition-all duration-300 focus:border-green focus:shadow-lg focus:ring-2 focus:ring-green/20 outline-none" 
+                                    aria-label="Your name">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                                <input type="email" id="email" name="email" placeholder="your.email@example.com" required 
+                                    class="w-full p-4 border-2 border-gray-300 rounded-xl transition-all duration-300 focus:border-green focus:shadow-lg focus:ring-2 focus:ring-green/20 outline-none" 
+                                    aria-label="Your email">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+91 1234567890" 
+                                    class="w-full p-4 border-2 border-gray-300 rounded-xl transition-all duration-300 focus:border-green focus:shadow-lg focus:ring-2 focus:ring-green/20 outline-none" 
+                                    aria-label="Your phone number">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message *</label>
+                                <textarea id="message" name="message" placeholder="Tell us about your requirements..." required rows="6" 
+                                    class="w-full p-4 border-2 border-gray-300 rounded-xl transition-all duration-300 focus:border-green focus:shadow-lg focus:ring-2 focus:ring-green/20 resize-none outline-none" 
+                                    aria-label="Your message"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-green text-white px-8 py-4 rounded-xl hover:bg-green/90 transition-all duration-300 font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-[1.02] flex items-center justify-center gap-2">
+                                <span>Send Message</span>
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                                </svg>
+                            </button>
+                            <div id="form-message" class="hidden mt-2 p-4 rounded-xl"></div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Contact Information -->
+                <div class="slide-in-right space-y-6">
+                    <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
+                        <h3 class="text-2xl font-bold mb-6 text-navy flex items-center gap-3">
+                            <div class="w-10 h-10 bg-gradient-to-br from-orange to-orange/70 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </div>
+                            Contact Information
+                        </h3>
+                        <div class="space-y-5">
+                            <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
+                                <div class="w-12 h-12 bg-green/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-navy mb-1">Address</h4>
+                                    <p class="text-gray-600 leading-relaxed">A-10, Near Warana Dairy,<br>Gadhinglaj, Dist. Kolhapur - 416502</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
+                                <div class="w-12 h-12 bg-green/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-navy mb-1">Phone</h4>
+                                    <div class="space-y-1">
+                                        <a href="tel:+919222681875" class="block text-green hover:text-green/80 hover:underline transition-colors">+91 9222681875</a>
+                                        <a href="tel:+919422581875" class="block text-green hover:text-green/80 hover:underline transition-colors">+91 9422581875</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
+                                <div class="w-12 h-12 bg-green/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-navy mb-1">Email</h4>
+                                    <a href="mailto:eelectrotech@gmail.com" class="text-green hover:text-green/80 hover:underline transition-colors">eelectrotech@gmail.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
+                                <div class="w-12 h-12 bg-green/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-navy mb-1">Website</h4>
+                                    <a href="https://www.electrotechautomation.in" target="_blank" rel="noopener noreferrer" class="text-green hover:text-green/80 hover:underline transition-colors">www.electrotechautomation.in</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Map Section -->
+                    <div class="bg-white p-2 rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+                        <div class="h-80 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3820.148!2d74.348!3d16.222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc0e8!2sGadhinglaj!5e0!3m2!1sen!2sin!4v1700000000000" 
+                                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" 
+                                title="Electrotech Enterprises Location" class="rounded-xl"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-green text-white rounded-full shadow-lg hover:bg-green/90 transition-all duration-300 opacity-0 pointer-events-none z-40 flex items-center justify-center hover:scale-110" aria-label="Scroll to top">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+
+    <!-- Footer -->
+    <footer class="bg-navy text-white py-12 border-t border-white/10">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                        <span class="gear-icon w-5 h-5"></span>
+                        Electrotech Enterprises
+                    </h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        One Stop Solution for Industrial Automation. Serving industries since 1994 with excellence and innovation.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="#about" class="hover:text-green transition-colors">About Us</a></li>
+                        <li><a href="#solutions" class="hover:text-green transition-colors">Solutions</a></li>
+                        <li><a href="#products" class="hover:text-green transition-colors">Products</a></li>
+                        <li><a href="#contact" class="hover:text-green transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" 
+                           class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-green transition-all duration-300 hover:scale-110" 
+                           aria-label="LinkedIn">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" 
+                           class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-green transition-all duration-300 hover:scale-110" 
+                           aria-label="Instagram">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" 
+                           class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-green transition-all duration-300 hover:scale-110" 
+                           aria-label="Facebook">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="text-sm text-gray-300">
+                        <a href="mailto:eelectrotech@gmail.com" class="hover:text-green transition-colors">eelectrotech@gmail.com</a>
+                    </p>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 text-center">
+                <p class="text-gray-300 text-sm">&copy; <span id="current-year"></span> Electrotech Enterprises. All rights reserved. Designed & Developed by Threelancerr</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar sticky and mobile toggle
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            navbar.classList.toggle('shadow-lg', window.scrollY > 0);
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = menuToggle;
+        
+        menuToggle.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.toggle('open');
+            menuIcon.classList.toggle('open');
+            menuToggle.setAttribute('aria-expanded', isOpen);
+        });
+        
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            menuIcon.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Animations on scroll
+        const animateElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        animateElements.forEach(el => observer.observe(el));
+
+        // Hero animations are handled via CSS
+
+        // Product details toggle
+        function toggleDetails(el) {
+            const isOpen = el.classList.toggle('open');
+            const header = el.previousElementSibling;
+            const icon = header.querySelector('.product-icon');
+            const ariaExpanded = header.getAttribute('aria-expanded') === 'true';
+            
+            header.setAttribute('aria-expanded', !ariaExpanded);
+            icon.textContent = isOpen ? '−' : '+';
+            icon.style.transform = isOpen ? 'rotate(45deg)' : 'rotate(0deg)';
+            icon.style.color = isOpen ? '#28A745' : '';
+        }
+        
+        // Add keyboard support for product accordions
+        document.querySelectorAll('[role="button"][onclick*="toggleDetails"]').forEach(button => {
+            button.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const details = button.nextElementSibling;
+                    toggleDetails(details);
+                }
+            });
+        });
+
+        // Form submission handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            const messageDiv = document.getElementById('form-message');
+            
+            // Simulate form submission (replace with actual API call)
+            messageDiv.classList.remove('hidden');
+            messageDiv.classList.add('bg-green/20', 'text-green', 'border', 'border-green');
+            messageDiv.textContent = 'Thank you! Your message has been sent. We will get back to you soon.';
+            form.reset();
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                messageDiv.classList.add('hidden');
+                messageDiv.classList.remove('bg-green/20', 'text-green', 'border', 'border-green');
+            }, 5000);
+        }
+        
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Scroll to top button
+        const scrollToTopBtn = document.getElementById('scroll-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                scrollToTopBtn.classList.add('opacity-100');
+            } else {
+                scrollToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+                scrollToTopBtn.classList.remove('opacity-100');
+            }
+        });
+        
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Performance optimization: Lazy load images and iframes
+        if ('IntersectionObserver' in window) {
+            const lazyElements = document.querySelectorAll('img[data-src], iframe[data-src]');
+            const lazyObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        element.src = element.dataset.src;
+                        element.removeAttribute('data-src');
+                        lazyObserver.unobserve(element);
+                    }
+                });
+            });
+            lazyElements.forEach(el => lazyObserver.observe(el));
+        }
+        
+        // Add active state to navigation links on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('text-green');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('text-green');
+                }
+            });
+        });
+
+        // Clients slider
+        const clients = [
+            "Rajarambapu Patil Sahakar Sakhar Karkhana Ltd.",
+            "Y.m.krishna S.S.K.LTD.",
+            "Satish Sugars Ltd., Gokak",
+            "Shree Halasidhanath Ssk Ltd Nipani,",
+            "Indian Cane Power Limited., Uttur",
+            "Sar Senapati Santaji Ghorpade Sugar Factory Ltd",
+            "Krantiagrani Dr.G.D.bapu Lad Sahakari Sakhar Karkhana Ltd.",
+            "Kumbhi Kasari S.S.K.LTD.",
+            "Dr.D.Y. Patil Sakhar Karkhana Ltd, Dnyanshantinagar",
+            "Shree Datta Ssk Ltd",
+            "Shri Dudhaganga Vedhaganga S.S.K.LTD. Bidri,",
+            "Shri Hiranyakeshi S.S.K.Niyamit",
+            "Appasaheb Nalawade Gadhinglaj Taluka Ssk Ltd.",
+            "Udagiri Sugar And Power Ltd",
+            "M/s. Ghatage Patil Industries Ltd",
+            "Shri Gurudatt Sugars Mill Ltd",
+            "Nirani Sugars Limited.",
+            "The Nandi S.s.k. Niyamit, Krishnanagar",
+            "VINP Distilleries & Sugars Pvt.ltd.",
+            "Ajara Shetkari S.S.K.LTD. Gavase,",
+            "Atharv Intertrade Pvt. Ltd.",
+            "Shri Dutt India Pvt.ltd.",
+            "Kallappanna Awade Jawahar Shetkari S.S.K.LTD.",
+            "Ulka Instruments & Controls Pvt. Ltd, Pune",
+            "Ulka Industries Pvt.ltd.",
+            "Sonla Sugar Joint Stock Company Site, Vietnam",
+            "Tuy Hoa Sugar Cane & Sugar Joint, Vietnam",
+            "Shirguppi Sugar Works Ltd.",
+            "Belgaum Sugars Pvt Ltd",
+            "Vishwaraj Sugar Industries Ltd",
+            "Shree Doodhaganga Krishna Ssk Niyamait,",
+            "Shree Basaveshwar Sugars Limited",
+            "Athani Sugars Limited.",
+            "Shree Annapurna Sugar And Jaggery Works Ltd",
+            "Mohanrao Shinde S.S.K.LTD.",
+            "Jagruti Sugars & Allied Works Ltd.",
+            "Eco Cane Sugar Energy Ltd",
+            "Lokmangal Agro Industries Ltd.",
+            "Dr. Babasaheb Ambedkar S.S.K.LTD.",
+            "Soubhagya Laxmi Sugars Limited,",
+            "Daund Sugar Private Limited",
+            "Grasim Industries Limited.",
+            "Sharad Sahakari Sakhar Karkhana Ltd.",
+            "Shree Tatyasaheb Kore Warana S.S.K.LTD..",
+            "Sangamnath Sugars Limited",
+            "The Ugar Sugar Works Ltd",
+            "Shri Sai Priya Sugars Ltd, Hippargi-mygur",
+            "Shri Balaji Sugars And Chemicals Pvt Ltd",
+            "Arihant Sugar Industries Limited",
+            "Shri Tuljabhavani S.S.K.LTD. Naldurg Sanchalit",
+            "Shri Kedarnath Sugar & Agro Products Ltd",
+            "The Ghataprabha Sahakari Sakkari Niyamit, Gokak.",
+            "The Mahatma Gandhi Sahakari Sakkare Kharkhane(niy)",
+            "Trualt Bioenergy Limited",
+            "Bhima Sahakari Sakhar Karkhana Ltd",
+            "Hutatma Kisan Ahir Sahakari Sakhar Karkhana",
+            "Loknete Balasaheb Desai Sahakari Sakhar Karkhana L",
+            "Loknete Baburao Patil Agro Industries Limited",
+            "Mellbro Sugars Pvt Ltd",
+            "Privi Speciality Chemicals Ltd",
+            "Supriya Lifescience Ltd",
+            "Lema Chemicals Industries.",
+            "Sriab Chemicals Pvt. Ltd.",
+            "Bilagi Sugar Mill Ltd",
+            "M/s Laila Sugars (p) Limited, Khanapur.",
+            "Olam Global Agri Commodities India Private Limited",
+            "Sadashivrao Mandlik Ssk Ltd.,",
+            "Sadguru Sri Sri Sakhar Karkhana Ltd",
+            "Shivaji Service Station (sugar Unit)",
+            "Shree Renuka Sugars Ltd",
+            "Shri Sangam Sahakari Sakkare Karakhane Niyamit.",
+            "Gujrat Ambuja Exports Limited",
+            "Gharda Chemicals Limited",
+            "Jamkhandi Sugars Ltd.",
+            "Sri Saibasava Sugars Limited",
+            "Nav Maharashtra Sahakari Soot Girani Ltd.",
+            "Shri Sant Damaji Ssk Ltd, Mangalwedha",
+            "Kay Bouvet Engineering Limited (unit-iii)",
+            "The Malegaon Sahakari Sakhar Karkhana Ltd.",
+            "Shri Mahankali Sahakari Sakhar Kharkhana Ltd..",
+            "Shri Chhatrapati Rajaram Ssk Ltd.",
+            "Shree Siddheshwar Ssk Ltd. Kumthe",
+            "Shri Malaprabha Sahakari Sakkare Karkhane Niyamit",
+            "The Ichalkaranji Co-op Spining Mills Limited",
+            "Amy Electricals Pvt Ltd",
+            "Chidanand Basaprabhu Kore Ssk Chikodi",
+            "Dorf Ketal Chemicals Pvt Ltd",
+            "Godavari Biorefineries Limited",
+            "Indian Sugar Manufacturing Co.ltd.",
+            "Kirloskar Brothers Limited",
+            "RB Technocrats And Reclaimers Private Limited",
+            "Onkar Sakhar Karkhana Pvt.ltd.",
+            "Mac Systems",
+            "Hutatma Swami Warke Sahakari Soot Girni Limited",
+            "Supra Chemicals"
+        ];
+
+        const track = document.getElementById('slider-track');
+        function createSliderItems(clientsList) {
+            clientsList.forEach((client, index) => {
+                const item = document.createElement('div');
+                item.classList.add('slider-item');
+                item.innerHTML = `
+                    <div class="client-card" style="animation-delay: ${index * 0.05}s;">
+                        <p class="client-name">${client}</p>
+                    </div>
+                `;
+                track.appendChild(item);
+            });
+        }
+
+        // Duplicate clients for infinite loop
+        createSliderItems(clients);
+        createSliderItems(clients); // Duplicate for seamless loop
+
+        let position = 0;
+        let animationId;
+        const slideSpeed = 0.5; // pixels per frame
+
+        function slide() {
+            const container = document.querySelector('.slider-container');
+            const itemWidth = container.offsetWidth / (window.innerWidth > 768 ? 3 : window.innerWidth > 480 ? 2 : 1);
+            const totalWidth = itemWidth * clients.length;
+            
+            position -= slideSpeed;
+            
+            // Reset position when we've scrolled through one set
+            if (Math.abs(position) >= totalWidth) {
+                position = 0;
+            }
+            
+            track.style.transform = `translateX(${position}px)`;
+            animationId = requestAnimationFrame(slide);
+        }
+
+        // Start sliding after page load
+        window.addEventListener('load', () => {
+            setTimeout(() => slide(), 500);
+        });
+        
+        // Pause on hover
+        const sliderContainer = document.querySelector('.slider-container');
+        sliderContainer.addEventListener('mouseenter', () => {
+            if (animationId) cancelAnimationFrame(animationId);
+        });
+        sliderContainer.addEventListener('mouseleave', () => {
+            slide();
+        });
+    </script>
+</body>
+</html>
