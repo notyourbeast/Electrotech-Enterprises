@@ -740,60 +740,95 @@
 
             <!-- Timeline Section -->
             <div class="mb-16 fade-in">
-                <h3 class="text-3xl font-bold text-center text-navy mb-12">Our Milestones</h3>
+                <h3 class="text-2xl md:text-3xl font-bold text-center text-navy mb-8 md:mb-12">Our Milestones</h3>
                 <div class="relative">
-                    <!-- Timeline line -->
+                    <!-- Timeline line - Desktop (vertical center) -->
                     <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-green to-orange top-0"></div>
                     
-                    <div class="space-y-12">
+                    <!-- Timeline line - Mobile (vertical left) -->
+                    <div class="md:hidden absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-green to-orange"></div>
+                    
+                    <div class="space-y-8 md:space-y-12">
                         <!-- Milestone 1 -->
-                        <div class="relative flex flex-col md:flex-row items-center gap-6">
+                        <div class="relative flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 pl-16 md:pl-0">
+                            <!-- Mobile timeline marker -->
+                            <div class="md:hidden absolute left-0 top-2 w-12 h-12 bg-green rounded-full flex items-center justify-center text-white font-bold shadow-lg z-10 text-sm">1</div>
+                            
+                            <!-- Desktop left content -->
                             <div class="w-full md:w-1/2 md:text-right md:pr-12">
-                                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-green hover:shadow-xl transition-all duration-300">
-                                    <div class="text-green font-bold text-lg mb-2">1994</div>
-                                    <h4 class="text-xl font-bold text-navy mb-2">The Beginning</h4>
-                                    <p class="text-gray-600">Started with maintenance of variable speed drives, laying the foundation for excellence.</p>
+                                <div class="bg-white p-5 md:p-6 rounded-xl shadow-lg border-l-4 border-green hover:shadow-xl transition-all duration-300">
+                                    <div class="text-green font-bold text-base md:text-lg mb-2">1994</div>
+                                    <h4 class="text-lg md:text-xl font-bold text-navy mb-2">The Beginning</h4>
+                                    <p class="text-gray-600 text-sm md:text-base">Started with maintenance of variable speed drives, laying the foundation for excellence.</p>
                                 </div>
                             </div>
-                            <div class="w-12 h-12 bg-green rounded-full flex items-center justify-center text-white font-bold shadow-lg z-10 flex-shrink-0">1</div>
-                            <div class="w-full md:w-1/2 md:pl-12"></div>
+                            
+                            <!-- Desktop timeline marker -->
+                            <div class="hidden md:flex w-12 h-12 bg-green rounded-full items-center justify-center text-white font-bold shadow-lg z-10 flex-shrink-0">1</div>
+                            
+                            <!-- Desktop right spacer -->
+                            <div class="hidden md:block w-full md:w-1/2 md:pl-12"></div>
                         </div>
                         
                         <!-- Milestone 2 -->
-                        <div class="relative flex flex-col md:flex-row items-center gap-6">
-                            <div class="w-full md:w-1/2 md:pr-12"></div>
-                            <div class="w-12 h-12 bg-orange rounded-full flex items-center justify-center text-white font-bold shadow-lg z-10 flex-shrink-0">2</div>
+                        <div class="relative flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 pl-16 md:pl-0">
+                            <!-- Mobile timeline marker -->
+                            <div class="md:hidden absolute left-0 top-2 w-12 h-12 bg-orange rounded-full flex items-center justify-center text-white font-bold shadow-lg z-10 text-sm">2</div>
+                            
+                            <!-- Desktop left spacer -->
+                            <div class="hidden md:block w-full md:w-1/2 md:pr-12"></div>
+                            
+                            <!-- Desktop timeline marker -->
+                            <div class="hidden md:flex w-12 h-12 bg-orange rounded-full items-center justify-center text-white font-bold shadow-lg z-10 flex-shrink-0">2</div>
+                            
+                            <!-- Content (right on desktop, left on mobile) -->
                             <div class="w-full md:w-1/2 md:text-left md:pl-12">
-                                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-orange hover:shadow-xl transition-all duration-300">
-                                    <div class="text-orange font-bold text-lg mb-2">2000s</div>
-                                    <h4 class="text-xl font-bold text-navy mb-2">Expansion</h4>
-                                    <p class="text-gray-600">Expanded services to include DCS/PLC systems and comprehensive automation solutions.</p>
+                                <div class="bg-white p-5 md:p-6 rounded-xl shadow-lg border-l-4 border-orange hover:shadow-xl transition-all duration-300">
+                                    <div class="text-orange font-bold text-base md:text-lg mb-2">2000s</div>
+                                    <h4 class="text-lg md:text-xl font-bold text-navy mb-2">Expansion</h4>
+                                    <p class="text-gray-600 text-sm md:text-base">Expanded services to include DCS/PLC systems and comprehensive automation solutions.</p>
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Milestone 3 -->
-                        <div class="relative flex flex-col md:flex-row items-center gap-6">
+                        <div class="relative flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 pl-16 md:pl-0">
+                            <!-- Mobile timeline marker -->
+                            <div class="md:hidden absolute left-0 top-2 w-12 h-12 bg-green rounded-full flex items-center justify-center text-white font-bold shadow-lg z-10 text-sm">3</div>
+                            
+                            <!-- Desktop left content -->
                             <div class="w-full md:w-1/2 md:text-right md:pr-12">
-                                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-green hover:shadow-xl transition-all duration-300">
-                                    <div class="text-green font-bold text-lg mb-2">2010s</div>
-                                    <h4 class="text-xl font-bold text-navy mb-2">Digital Transformation</h4>
-                                    <p class="text-gray-600">Introduced online monitoring systems and cloud-based solutions for regulatory compliance.</p>
+                                <div class="bg-white p-5 md:p-6 rounded-xl shadow-lg border-l-4 border-green hover:shadow-xl transition-all duration-300">
+                                    <div class="text-green font-bold text-base md:text-lg mb-2">2010s</div>
+                                    <h4 class="text-lg md:text-xl font-bold text-navy mb-2">Digital Transformation</h4>
+                                    <p class="text-gray-600 text-sm md:text-base">Introduced online monitoring systems and cloud-based solutions for regulatory compliance.</p>
                                 </div>
                             </div>
-                            <div class="w-12 h-12 bg-green rounded-full flex items-center justify-center text-white font-bold shadow-lg z-10 flex-shrink-0">3</div>
-                            <div class="w-full md:w-1/2 md:pl-12"></div>
+                            
+                            <!-- Desktop timeline marker -->
+                            <div class="hidden md:flex w-12 h-12 bg-green rounded-full items-center justify-center text-white font-bold shadow-lg z-10 flex-shrink-0">3</div>
+                            
+                            <!-- Desktop right spacer -->
+                            <div class="hidden md:block w-full md:w-1/2 md:pl-12"></div>
                         </div>
                         
                         <!-- Milestone 4 -->
-                        <div class="relative flex flex-col md:flex-row items-center gap-6">
-                            <div class="w-full md:w-1/2 md:pr-12"></div>
-                            <div class="w-12 h-12 bg-orange rounded-full flex items-center justify-center text-white font-bold shadow-lg z-10 flex-shrink-0">4</div>
+                        <div class="relative flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 pl-16 md:pl-0">
+                            <!-- Mobile timeline marker -->
+                            <div class="md:hidden absolute left-0 top-2 w-12 h-12 bg-orange rounded-full flex items-center justify-center text-white font-bold shadow-lg z-10 text-sm">4</div>
+                            
+                            <!-- Desktop left spacer -->
+                            <div class="hidden md:block w-full md:w-1/2 md:pr-12"></div>
+                            
+                            <!-- Desktop timeline marker -->
+                            <div class="hidden md:flex w-12 h-12 bg-orange rounded-full items-center justify-center text-white font-bold shadow-lg z-10 flex-shrink-0">4</div>
+                            
+                            <!-- Content (right on desktop, left on mobile) -->
                             <div class="w-full md:w-1/2 md:text-left md:pl-12">
-                                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-orange hover:shadow-xl transition-all duration-300">
-                                    <div class="text-orange font-bold text-lg mb-2">2024</div>
-                                    <h4 class="text-xl font-bold text-navy mb-2">30 Years Strong</h4>
-                                    <p class="text-gray-600">Celebrating 30 years of excellence, serving 500+ clients with unwavering commitment.</p>
+                                <div class="bg-white p-5 md:p-6 rounded-xl shadow-lg border-l-4 border-orange hover:shadow-xl transition-all duration-300">
+                                    <div class="text-orange font-bold text-base md:text-lg mb-2">2024</div>
+                                    <h4 class="text-lg md:text-xl font-bold text-navy mb-2">30 Years Strong</h4>
+                                    <p class="text-gray-600 text-sm md:text-base">Celebrating 30 years of excellence, serving 500+ clients with unwavering commitment.</p>
                                 </div>
                             </div>
                         </div>
@@ -1567,8 +1602,7 @@
                                 <div>
                                     <h4 class="font-semibold text-navy mb-1">Phone</h4>
                                     <div class="space-y-1">
-                                        <a href="tel:+919222681875" class="block text-green hover:text-green/80 hover:underline transition-colors">+91 9222681875</a>
-                                        <a href="tel:+919422581875" class="block text-green hover:text-green/80 hover:underline transition-colors">+91 9422581875</a>
+                                        <a href="tel:+919222681875" class="block text-green hover:text-green/80 hover:underline transition-colors">+91 9822681875</a>
                                     </div>
                                 </div>
                             </div>
